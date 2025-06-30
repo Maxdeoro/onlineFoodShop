@@ -1,5 +1,5 @@
 import { useState, type MouseEvent } from 'react';
-import './App.css';
+// import './App.css';
 import { ButtonAlt } from './components/button/Button';
 
 
