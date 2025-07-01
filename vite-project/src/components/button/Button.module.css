@@ -1,11 +1,11 @@
 .button {
-    border-radius: 6px;
     border: none;
-    padding: 6px 30px;
+    border-radius: 29px;
     font-family: inherit;
+    font-style: normal;
+    font-weight: 400;
     cursor: pointer;
     transition: background 0.25s;
-    font-size: 16px;
     color: var(--white-color);
 }
 
@@ -15,4 +15,15 @@
 
 .accent:hover {
     background: var(--primary-hover-color);
+}
+
+.big {
+    font-size: 15px;
+    text-transform: uppercase;
+    padding: 20px 60px;
+}
+
+.small {
+    font-size: 16px;
+    padding: 10px 25px;
 }

@@ -1,6 +1,7 @@
 import { useState, type MouseEvent } from 'react';
 // import './App.css';
-import { ButtonAlt } from './components/button/Button';
+import { Button } from './components/button/Button';
+import Input from './components/input/Input';
 
 
 function App() {
@@ -15,7 +16,9 @@ function App() {
 
   return (
     <>
-      <ButtonAlt onClick={addCounter}>ButtonAlt</ButtonAlt>
+      <Button appearance='small' onClick={addCounter}>Button</Button>
+      <Button appearance='big' onClick={addCounter}>Button</Button>
+      <Input placeholder='input here'/>
     </>
   )
 }

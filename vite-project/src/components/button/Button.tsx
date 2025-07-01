@@ -3,17 +3,13 @@ import type { ButtonProps } from './Button.props';
 import cn from 'classnames';
 import styles from './Button.module.css';
 
-// export function Button({children, className, ...props}: ButtonProps): JSX.Element {
-//     return (
-//         <button className={cn('button accent', className)} {...props}>
-//             {children}
-//         </button>
-//     );
-// };
-
-export const ButtonAlt: FC<ButtonProps> = ({children, className, ...props}) => {
+export const Button: FC<ButtonProps> = ({children, appearance='small', className, ...props}) => {
     return (
-        <button className={cn(styles['button'],styles['accent'], className)} {...props}>{children}</button>
+        <button className={cn(styles['button'],styles['accent'], className, {
+            [styles['small']]: appearance === 'small',
+            [styles['big']]: appearance === 'big',
+        })} 
+                {...props}>{children}</button>
     );
 };
 
