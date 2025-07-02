@@ -2,11 +2,25 @@ import { useState, type MouseEvent } from 'react';
 // import './App.css';
 import { Button } from './components/button/Button';
 import Input from './components/input/Input';
-import { Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Menu } from './pages/menu/Menu';
 import { Cart } from './pages/cart/Cart';
 import { Error } from './pages/error/Error';
 
+const myRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <Menu />,
+  },
+  {
+    path: '/cart',
+    element: <Cart />,
+  },
+  {
+    path: '*',
+    element: <Error />
+  },
+]);
 
 function App() {
 
@@ -27,11 +41,7 @@ function App() {
         <a href='/'>Menu</a><br/>
         <a href='/cart'>Cart</a>
       </div>
-      <Routes>
-        <Route path='/' element={<Menu/>}/>
-        <Route path='/cart' element={<Cart/>} />
-        <Route path='*' element={<Error />} />
-      </Routes>
+      <RouterProvider router={myRouter} />
     </>
   )
 }
