@@ -5,7 +5,7 @@ import type { FC } from 'react';
 
 export const ProductCard: FC<ProductCardProps> = ({Id, price, image, title, rating,
     description, ...props}) => {
-    return <Link to={'/pizza'} className={styles['link']}>
+    return <Link to={`/product/${Id}`} className={styles['link']}>
         <div className={styles['card']} {...props}>
                 <div className={styles['head']} style={{backgroundImage:`url('${image}')`}}>
                     <div className={styles['price']}>
