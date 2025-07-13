@@ -1,8 +1,8 @@
 import type { HTMLAttributes } from "react";
 
 export interface ProductCardProps extends HTMLAttributes<HTMLDivElement>{
-    title: string;
-    description: string;
+    name: string;
+    ingredients: string;
     image: string;
     price: number;
     rating: number;

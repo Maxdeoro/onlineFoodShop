@@ -1,0 +1,184 @@
+  [
+    {
+      "Id": 1,
+      "name": "Margherita",
+      "price": 12,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-1.jpg",
+      "ingredients": ["tomato", "mozzarella", "basil"],
+      "rating": 4.2
+    },
+    {
+      "Id": 2,
+      "name": "Capricciosa",
+      "price": 14,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-2.jpg",
+      "ingredients": ["tomato", "mozzarella", "ham", "mushrooms", "artichoke"],
+      "rating": 4.3
+    },
+    {
+      "Id": 3,
+      "name": "Romana",
+      "price": 15,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-3.jpg",
+      "ingredients": ["tomato", "mozzarella", "prosciutto"],
+      "rating": 4.4
+    },
+    {
+      "Id": 4,
+      "name": "Prosciutto e Rucola",
+      "price": 16,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-4.jpg",
+      "ingredients": ["tomato", "mozzarella", "prosciutto", "arugula"],
+      "rating": 4.5
+    },
+    {
+      "Id": 5,
+      "name": "Diavola",
+      "price": 16,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-5.jpg",
+      "ingredients": ["tomato", "mozzarella", "spicy salami", "chili flakes"],
+      "rating": 4.6
+    },
+    {
+      "Id": 6,
+      "name": "Vegetale",
+      "price": 13,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-6.jpg",
+      "ingredients": [
+        "tomato",
+        "mozzarella",
+        "bell peppers",
+        "onions",
+        "mushrooms"
+      ],
+      "rating": 4.7
+    },
+    {
+      "Id": 7,
+      "name": "Napoli",
+      "price": 16,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-7.jpg",
+      "ingredients": ["tomato", "mozzarella", "fresh tomato", "basil"],
+      "rating": 4.8
+    },
+    {
+      "Id": 8,
+      "name": "Siciliana",
+      "price": 16,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-8.jpg",
+      "ingredients": ["tomato", "mozzarella", "anchovies", "olives", "capers"],
+      "rating": 4.9
+    },
+    {
+      "Id": 9,
+      "name": "Pepperoni",
+      "price": 14,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-9.jpg",
+      "ingredients": ["tomato", "mozzarella", "pepperoni"],
+      "rating": 4.9
+    },
+    {
+      "Id": 10,
+      "name": "Hawaiian",
+      "price": 15,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-10.jpg",
+      "ingredients": ["tomato", "mozzarella", "pineapple", "ham"],
+      "rating": 4.9
+    },
+    {
+      "Id": 11,
+      "name": "Spinach and Mushroom",
+      "price": 15,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-11.jpg",
+      "ingredients": ["tomato", "mozzarella", "spinach", "mushrooms"],
+      "rating":4.8
+    },
+    {
+      "Id": 12,
+      "name": "Mediterranean",
+      "price": 16,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-12.jpg",
+      "ingredients": [
+        "tomato",
+        "mozzarella",
+        "sun-dried tomatoes",
+        "olives",
+        "artichoke"
+      ],
+      "rating": 4.7
+    },
+    {
+      "Id": 13,
+      "name": "Greek",
+      "price": 16,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-13.jpg",
+      "ingredients": [
+        "tomato",
+        "mozzarella",
+        "spinach",
+        "feta",
+        "olives",
+        "pepperoncini"
+      ],
+      "rating": 4.6
+    },
+    {
+      "Id": 14,
+      "name": "Abruzzese",
+      "price": 16,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-14.jpg",
+      "ingredients": ["tomato", "mozzarella", "prosciutto", "arugula"],
+      "rating": 4.5
+    },
+    {
+      "Id": 15,
+      "name": "Pesto Chicken",
+      "price": 16,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-15.jpg",
+      "ingredients": [
+        "pesto",
+        "mozzarella",
+        "chicken",
+        "sun-dried tomatoes",
+        "spinach"
+      ],
+      "rating": 4.4
+    },
+    {
+      "Id": 16,
+      "name": "Eggplant Parmesan",
+      "price": 15,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-16.jpg",
+      "ingredients": ["marinara", "mozzarella", "eggplant", "parmesan"],
+      "rating": 4.3
+    },
+    {
+      "Id": 17,
+      "name": "Roasted Veggie",
+      "price": 15,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-17.jpg",
+      "ingredients": [
+        "marinara",
+        "mozzarella",
+        "zucchini",
+        "eggplant",
+        "peppers",
+        "onions"
+      ],
+      "rating": 4.2
+    },
+    {
+      "Id": 18,
+      "name": "Tofu and Mushroom",
+      "price": 15,
+      "image": "https://welivwxuzcdhxarmumgu.supabase.co/storage/v1/object/public/Fast%20Pizza/pizza/pizza-18.jpg",
+      "ingredients": [
+        "marinara",
+        "mozzarella",
+        "tofu",
+        "mushrooms",
+        "bell peppers"
+      ],
+      "rating": 4.1
+    }
+ ]

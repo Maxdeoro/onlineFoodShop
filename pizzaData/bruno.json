@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "pizzaData",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
