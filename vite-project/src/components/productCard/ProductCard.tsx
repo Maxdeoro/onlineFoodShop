@@ -5,9 +5,10 @@ import type { ProductCardProps } from './ProductCard.props';
 function ProductCard(props: ProductCardProps) {
     return <Link to={`/product/${props.Id}`} className={styles['link']}>
         <div className={styles['card']} >
-                {/* <div className={styles['head']} 
-                     style={{ backgroundImage: 'url(/example-pizza.jpg))' }}> */}
-                <div className={styles['head']} style={{ backgroundImage: `url('${props.image}')` }}>
+                <div className={styles['head']} 
+                     style={{ backgroundImage: 'url(/pizza-example.jpg))' }}>
+                {/* <div className={styles['head']} style={{ backgroundImage: `url('${props.image}')` }}> */}
+                    <img src='/pizza-example.jpg' className={styles['hard-image']}/>
                     <div className={styles['price']}>
                         {props.price}&nbsp;
                         <span className={styles['currency']}>U$</span>

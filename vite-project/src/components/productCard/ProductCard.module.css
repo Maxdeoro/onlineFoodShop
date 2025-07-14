@@ -11,6 +11,11 @@
     background-position: center; */
 }
 
+.hard-image {
+    height: 165px;
+    min-width: 320px;
+}
+
 .card {
     background: var(--white-color);
     border-radius: 19px;
