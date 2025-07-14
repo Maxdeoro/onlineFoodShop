@@ -5,20 +5,31 @@ import Search from '../../components/search/Search';
 import { PREFIX } from "../../helpers/API";
 import type { Product } from "../../interfaces/product.interface";
 import styles from './Menu.module.css';
+import axios from "axios";
 
 export function Menu() {
 
     const [products, setProducts] = useState<Product[]>([]);
 
     // get data from backend
-    const getMenu = async() => {
-        try {
-            const response = await fetch(`${PREFIX}/products`);
-            if(!response.ok) {
-                return;
-            }
-            const data = await response.json() as Product[];
+    // const getMenu = async() => {
+    //     try {
+    //         const response = await fetch(`${PREFIX}/products`);
+    //         if(!response.ok) {
+    //             return;
+    //         }
+    //         const data = await response.json() as Product[];
 
+    //         setProducts(data);
+    //     } catch(e) {
+    //         console.error(e);
+    //         return;
+    //     }
+    // };
+
+    const getMenu = async () => {
+        try {
+            const {data} = await axios.get<Product[]>(`${PREFIX}/products`);
             setProducts(data);
         } catch(e) {
             console.error(e);

@@ -6,6 +6,9 @@
     position: relative;
     min-height: 165px;
     border-radius: 19px;
+    /* background-image: url('/example-pizza.jpg');
+    background-size: cover;
+    background-position: center; */
 }
 
 .card {
