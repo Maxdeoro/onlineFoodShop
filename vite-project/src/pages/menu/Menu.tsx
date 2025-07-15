@@ -26,13 +26,22 @@ export function Menu() {
     //         return;
     //     }
     // };
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const getMenu = async () => {
         try {
+            setIsLoading(true);         // product loading starts
+            await new Promise<void>((resolve) => {
+                setTimeout(() => {
+                    resolve();
+                }, 4000);
+            });
             const {data} = await axios.get<Product[]>(`${PREFIX}/products`);
             setProducts(data);
+            setIsLoading(false);        // product loading finished
         } catch(e) {
             console.error(e);
+            setIsLoading(false);        // stop loading if error
             return;
         }
     };
@@ -47,12 +56,13 @@ export function Menu() {
             <Search placeholder="Search"/>
         </div>
         <div>
-            {products.map(prod => (
+            {!isLoading && products.map(prod => (
             <ProductCard name={prod.name}
                 ingredients={prod.ingredients.join(', ')}
                 image="prod.image" price={prod.price} rating={prod.rating}
                 Id={prod.Id} key={prod.Id}/>
             ))}
+            {isLoading && <>Please wait...</>}
         </div>
     </>;
 };
