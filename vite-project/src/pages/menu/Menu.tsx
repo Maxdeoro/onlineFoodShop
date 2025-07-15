@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
-import ProductCard from "../../components/productCard/ProductCard";
 import Search from '../../components/search/Search';
 import { PREFIX } from "../../helpers/API";
 import type { Product } from "../../interfaces/product.interface";
 import styles from './Menu.module.css';
 import axios, { AxiosError } from "axios";
+import MenuList from "./menuList/MenuList";
 
 export function Menu() {
 
@@ -23,7 +23,7 @@ export function Menu() {
                     resolve();
                 }, 4000);
             });
-            const {data} = await axios.get<Product[]>(`${PREFIX}/productss`);
+            const {data} = await axios.get<Product[]>(`${PREFIX}/products`);
             setProducts(data);
             setIsLoading(false);        // product loading finished
         } catch(e) {
@@ -47,12 +47,7 @@ export function Menu() {
         </div>
         <div>
             {error && <>Something went wrong:(...{error}</>}
-            {!isLoading && products.map(prod => (
-            <ProductCard name={prod.name}
-                ingredients={prod.ingredients.join(', ')}
-                image="prod.image" price={prod.price} rating={prod.rating}
-                Id={prod.Id} key={prod.Id}/>
-            ))}
+            {!isLoading && <MenuList products={products}/>}
             {isLoading && <>Please wait...</>}
         </div>
     </>;
