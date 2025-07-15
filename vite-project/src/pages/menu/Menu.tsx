@@ -5,42 +5,32 @@ import Search from '../../components/search/Search';
 import { PREFIX } from "../../helpers/API";
 import type { Product } from "../../interfaces/product.interface";
 import styles from './Menu.module.css';
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 export function Menu() {
 
     const [products, setProducts] = useState<Product[]>([]);
-
-    // get data from backend
-    // const getMenu = async() => {
-    //     try {
-    //         const response = await fetch(`${PREFIX}/products`);
-    //         if(!response.ok) {
-    //             return;
-    //         }
-    //         const data = await response.json() as Product[];
-
-    //         setProducts(data);
-    //     } catch(e) {
-    //         console.error(e);
-    //         return;
-    //     }
-    // };
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string | undefined>();
 
     const getMenu = async () => {
         try {
             setIsLoading(true);         // product loading starts
+
+            // imitation of bad internet connection
             await new Promise<void>((resolve) => {
                 setTimeout(() => {
                     resolve();
                 }, 4000);
             });
-            const {data} = await axios.get<Product[]>(`${PREFIX}/products`);
+            const {data} = await axios.get<Product[]>(`${PREFIX}/productss`);
             setProducts(data);
             setIsLoading(false);        // product loading finished
         } catch(e) {
             console.error(e);
+            if(e instanceof AxiosError) {
+                setError(e.message);
+            }
             setIsLoading(false);        // stop loading if error
             return;
         }
@@ -56,6 +46,7 @@ export function Menu() {
             <Search placeholder="Search"/>
         </div>
         <div>
+            {error && <>Something went wrong:(...{error}</>}
             {!isLoading && products.map(prod => (
             <ProductCard name={prod.name}
                 ingredients={prod.ingredients.join(', ')}
