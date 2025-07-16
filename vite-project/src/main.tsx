@@ -31,6 +31,7 @@ const myRouter = createBrowserRouter([
       {
         path: '/product/:Id',
         element: <Product/>,
+        errorElement: 'Oops! Something went wrong!',
         loader: async ({params}) => {
           const data = await axios.get(`${PREFIX}/products/${params.id}`);
           return data;
