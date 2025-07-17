@@ -7,7 +7,7 @@ import styles from './Menu.module.css';
 import axios, { AxiosError } from "axios";
 import MenuList from "./menuList/MenuList";
 
-export function Menu() {
+function Menu() {
 
     const [products, setProducts] = useState<Product[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -21,7 +21,7 @@ export function Menu() {
             await new Promise<void>((resolve) => {
                 setTimeout(() => {
                     resolve();
-                }, 4000);
+                }, 2000);
             });
             const {data} = await axios.get<Product[]>(`${PREFIX}/products`);
             setProducts(data);
@@ -52,3 +52,5 @@ export function Menu() {
         </div>
     </>;
 };
+
+export default Menu;
