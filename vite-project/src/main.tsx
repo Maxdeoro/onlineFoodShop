@@ -8,6 +8,9 @@ import { Layout } from './layout/menu/Layout.tsx';
 import { Product } from './pages/product/Product.tsx';
 import axios from 'axios';
 import { PREFIX } from './helpers/API.ts';
+import AuthLayout from './layout/auth/AuthLayout.tsx';
+import Login from './pages/login/Login.tsx';
+import Registration from './pages/registration/Registration.tsx';
 
 const Menu = lazy(() => import('./pages/menu/Menu.tsx'));
 
@@ -25,11 +28,26 @@ const myRouter = createBrowserRouter([
         element: <Cart/>
       },
       {
+        path: '/auth',
+        element: <AuthLayout/>,
+        children: [
+          {
+            path: 'login',
+            element: <Login/>,
+          },
+          {
+            path: 'registration',
+            element: <Registration/>,
+          },
+        ],
+      },
+      {
         path: '*',
         element: <Error/>,
       },
       {
-        path: '/product/:Id',
+        // path: '/product/:Id',
+        path: '/product/:id',
         element: <Product/>,
         errorElement: 'Oops! Something went wrong!',
         loader: async ({params}) => {
@@ -43,7 +61,6 @@ const myRouter = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/* <App /> */}
     <RouterProvider router={myRouter}></RouterProvider>
   </StrictMode>
 )

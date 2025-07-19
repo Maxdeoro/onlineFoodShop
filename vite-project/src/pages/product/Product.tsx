@@ -5,5 +5,7 @@ export function Product() {
 
     const data = useLoaderData() as Product;
 
-    return <>Product - {data.name}</>;
+    return (
+            <>Product - {data.name}</>
+    );
 };
