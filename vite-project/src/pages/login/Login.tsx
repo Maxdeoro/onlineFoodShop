@@ -11,16 +11,16 @@ const submit = (e: FormEvent) => {
 };
 
 function Login() {
-    return <div className={styles['loginWrapper']} onSubmit={submit}>
+    return <div className={styles['loginWrapper']} >
                 <Header>Login</Header>
-                <form className={styles['loginForm']}>
+                <form className={styles['loginForm']} onSubmit={submit}>
                     <div className={styles['field']}>
                         <label htmlFor='email'>Your email</label>
-                        <Input id='email' placeholder='Email'/>
+                        <Input id='email' name='email' placeholder='Email'/>
                     </div>
                     <div className={styles['field']}>
                         <label htmlFor='password'>Your password</label>
-                        <Input id='password' type='password' placeholder='Password'/>
+                        <Input id='password' name='password' type='password' placeholder='Password'/>
                     </div>
                     <Button appearance='big'>Login</Button>
                 </form>
