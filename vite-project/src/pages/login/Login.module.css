@@ -37,3 +37,10 @@
     text-decoration: none;
     color: var(--primary-color);
 }
+
+.error {
+    background: rgb(233, 96, 96);
+    color: white;
+    padding: 20px;
+    font-size: 20px;
+}

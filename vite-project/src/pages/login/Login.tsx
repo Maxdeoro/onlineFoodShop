@@ -3,16 +3,51 @@ import { Button } from '../../components/button/Button';
 import Header from '../../components/header/Header';
 import Input from '../../components/input/Input';
 import styles from './Login.module.css';
-import type { FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
+import axios, { AxiosError } from 'axios';
+import { PREFIX } from '../../helpers/API';
 
-const submit = (e: FormEvent) => {
-    e.preventDefault();             // won't reload page
-    console.log(e);
+export type LoginForm = {
+    email: {
+        value: string,
+    };
+    password: {
+        value: string,
+    }
 };
 
+// enter a@gmail.com as email, 123 as password
+
 function Login() {
+
+    const [error, setError] = useState<string | undefined>();
+
+    const submit = async (e: FormEvent) => {
+    e.preventDefault();             // won't reload page
+    setError(undefined);
+    const target = e.target as typeof e.target & LoginForm;
+    const {email, password} = target;
+    console.log(email.value);
+    console.log(password.value);
+    sendLogin(email.value, password.value);
+};
+
+    const sendLogin = async (email: string, password: string) => {
+    try {
+        const {data} = await axios.post(`${PREFIX}/auth/login`, {email, password});
+        console.log(data);
+    } catch(e) {
+        if(e instanceof AxiosError) {
+            console.log(e);
+            setError(e.response?.data.message);
+            // setError('Wrong email or password');
+        }
+    }
+};
+
     return <div className={styles['loginWrapper']} >
                 <Header>Login</Header>
+                {error && <div className={styles['error']}>{error}</div>}
                 <form className={styles['loginForm']} onSubmit={submit}>
                     <div className={styles['field']}>
                         <label htmlFor='email'>Your email</label>
