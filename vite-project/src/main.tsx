@@ -11,13 +11,15 @@ import { PREFIX } from './helpers/API.ts';
 import AuthLayout from './layout/auth/AuthLayout.tsx';
 import Login from './pages/login/Login.tsx';
 import Registration from './pages/registration/Registration.tsx';
+import RequireAuth from './helpers/RequireAuth.tsx';
 
 const Menu = lazy(() => import('./pages/menu/Menu.tsx'));
 
 const myRouter = createBrowserRouter([
   {
     path: '/',
-    element: <Layout/>,
+    element: <RequireAuth><Layout/></RequireAuth>,
+    // element: <Layout/>,
     children: [
       {
         path: '/',

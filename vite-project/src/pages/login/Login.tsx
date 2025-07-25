@@ -13,7 +13,7 @@ export type LoginForm = {
     };
     password: {
         value: string,
-    }
+    };
 };
 
 // enter a@gmail.com as email, 123 as password
