@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../components/button/Button';
 import Header from '../../components/header/Header';
 import Input from '../../components/input/Input';
@@ -6,6 +6,7 @@ import styles from './Login.module.css';
 import { useState, type FormEvent } from 'react';
 import axios, { AxiosError } from 'axios';
 import { PREFIX } from '../../helpers/API';
+import type { LoginResponse } from '../../interfaces/auth.interface';
 
 export type LoginForm = {
     email: {
@@ -21,6 +22,7 @@ export type LoginForm = {
 function Login() {
 
     const [error, setError] = useState<string | undefined>();
+    const navigate = useNavigate();
 
     const submit = async (e: FormEvent) => {
     e.preventDefault();             // won't reload page
@@ -34,13 +36,14 @@ function Login() {
 
     const sendLogin = async (email: string, password: string) => {
     try {
-        const {data} = await axios.post(`${PREFIX}/auth/login`, {email, password});
+        const {data} = await axios.post<LoginResponse>(`${PREFIX}/auth/login`, {email, password});
         console.log(data);
+        localStorage.setItem('jwt', data.access_token);
+        navigate('/');
     } catch(e) {
         if(e instanceof AxiosError) {
             console.log(e);
             setError(e.response?.data.message);
-            // setError('Wrong email or password');
         }
     }
 };

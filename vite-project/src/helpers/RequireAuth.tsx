@@ -6,8 +6,8 @@ interface RequireAuthProps {
 };
 
 const RequireAuth = ({children}: RequireAuthProps) => {
-    const jwt = 'exampleJWT';
-    // const jwt = null;
+    const jwt = localStorage.getItem('jwt');
+
     if(!jwt) {
         return (
             <Navigate to='/auth/login' replace={true}/>
