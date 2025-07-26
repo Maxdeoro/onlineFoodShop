@@ -16,20 +16,30 @@ import RequireAuth from './helpers/RequireAuth.tsx';
 const Menu = lazy(() => import('./pages/menu/Menu.tsx'));
 
 const myRouter = createBrowserRouter([
-  {
-    path: '/',
-    element: <RequireAuth><Layout/></RequireAuth>,
-    // element: <Layout/>,
-    children: [
-      {
+    {
         path: '/',
-        element: <Suspense fallback={<>Loading...</>}><Menu/></Suspense>
-      },
-      {
-        path: '/cart',
-        element: <Cart/>
-      },
-      {
+        element: <RequireAuth><Layout/></RequireAuth>,
+        children: [
+        {
+            path: '/',
+            element: <Suspense fallback={<>Loading...</>}><Menu/></Suspense>
+        },
+        {
+            path: '/cart',
+            element: <Cart/>
+        },
+        {
+            path: '/product/:id',
+            element: <Product/>,
+            errorElement: 'Oops! Something went wrong!',
+            loader: async ({params}) => {
+            const data = await axios.get(`${PREFIX}/products/${params.id}`);
+            return data;
+            },
+        },
+      ]
+    },
+    {
         path: '/auth',
         element: <AuthLayout/>,
         children: [
@@ -44,21 +54,9 @@ const myRouter = createBrowserRouter([
         ],
       },
       {
-        path: '*',
-        element: <Error/>,
-      },
-      {
-        // path: '/product/:Id',
-        path: '/product/:id',
-        element: <Product/>,
-        errorElement: 'Oops! Something went wrong!',
-        loader: async ({params}) => {
-          const data = await axios.get(`${PREFIX}/products/${params.id}`);
-          return data;
-        },
-      }
-    ],
-  },
+		path: '*',
+		element: <Error />
+	  }
 ]);
 
 createRoot(document.getElementById('root')!).render(
@@ -66,3 +64,4 @@ createRoot(document.getElementById('root')!).render(
     <RouterProvider router={myRouter}></RouterProvider>
   </StrictMode>
 )
+
