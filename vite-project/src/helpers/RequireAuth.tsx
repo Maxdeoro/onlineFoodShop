@@ -1,12 +1,15 @@
 import type { ReactNode } from "react";
+import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import type { RootStore } from "../store/store";
 
 interface RequireAuthProps {
     children: ReactNode;
 };
 
 const RequireAuth = ({children}: RequireAuthProps) => {
-    const jwt = localStorage.getItem('jwt');
+
+    const jwt = useSelector((state: RootStore) => state.user.jwt);
 
     if(!jwt) {
         return (
@@ -18,24 +21,5 @@ const RequireAuth = ({children}: RequireAuthProps) => {
 
 export default RequireAuth;
 
-// import type { ReactNode } from "react";
-// import { Navigate, useLocation } from "react-router-dom";
 
-// interface RequireAuthProps {
-//   children: ReactNode;
-// }
-
-// const RequireAuth = ({ children }: RequireAuthProps) => {
-//   const location = useLocation();
-//   const jwt = localStorage.getItem('jwt'); 
-//     // const jwt = 'm';
-
-//   if (!jwt) {
-//     return <Navigate to="/auth/login" state={{ from: location }} replace />;
-//   }
-
-//   return children;
-// };
-
-// export default RequireAuth;
 
