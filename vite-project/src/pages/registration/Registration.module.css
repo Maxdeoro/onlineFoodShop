@@ -1,0 +1,46 @@
+.registrationWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.registrationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.field label {
+    color: #9e8080;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-secondary-color);
+    font-size: 16px;
+}
+
+.links a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.error {
+    background: rgb(233, 96, 96);
+    color: white;
+    padding: 20px;
+    font-size: 20px;
+}

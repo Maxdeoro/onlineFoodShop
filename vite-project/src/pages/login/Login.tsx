@@ -39,7 +39,7 @@ function Login() {
     console.log(email.value);
     console.log(password.value);
     sendLogin(email.value, password.value);
-};
+    };
 
     const sendLogin = async (email: string, password: string) => {
         dispatch(login({email, password}));

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loadState } from "./storage";
-import type { LoginResponse } from "../interfaces/auth.interface";
+import type { LoginResponse, RegistrationResponse } from "../interfaces/auth.interface";
 import { PREFIX } from "../helpers/API";
 import axios, { AxiosError } from "axios";
 import type { Profile } from "../interfaces/user.interface";
@@ -16,6 +16,7 @@ export interface UserState {
     jwt: string | null;
     loginErrorMessage?: string;
     profile?: Profile;
+    registrationErrorMessage?: string;
 };
 
 const initialState: UserState = {
@@ -33,6 +34,21 @@ export const login = createAsyncThunk('user/login', async (params: {email: strin
         }
     }
 });
+
+export const registration = createAsyncThunk('user/register', async (params: {
+    email: string, password: string, name: string}) => {
+        try {
+            const {data} = await axios.post<LoginResponse>(`${PREFIX}/auth/register`, 
+                {email: params.email, password: params.password, name: params.name}
+            );
+            return data;
+        } catch(e) {
+            if(e instanceof AxiosError) {
+                throw new Error(e.response?.data.message);
+            }
+        }
+    }
+);
 
 export const getProfile = createAsyncThunk<Profile, void, {state: RootStore}>('user/getProfile', async (_, thunkAPI) => {
     const jwt = thunkAPI.getState().user.jwt;
@@ -54,6 +70,9 @@ export const userSlice = createSlice({
         clearLoginError: (state) => {
             state.loginErrorMessage = undefined;
         },
+        clearRegistrationError: (state) => {
+            state.registrationErrorMessage = undefined;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(login.fulfilled, (state, action) => {
@@ -67,6 +86,15 @@ export const userSlice = createSlice({
         });
         builder.addCase(getProfile.fulfilled, (state, action) => {
             state.profile = action.payload;
+        });
+        builder.addCase(registration.fulfilled, (state, action) => {
+            if(!action.payload) {
+                return;
+            }
+            state.jwt = action.payload.access_token;
+        });
+        builder.addCase(registration.rejected, (state, action) => {
+            state.registrationErrorMessage = action.error.message;
         });
     },
 });
