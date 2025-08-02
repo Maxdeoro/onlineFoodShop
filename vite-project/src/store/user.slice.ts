@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loadState } from "./storage";
-import type { LoginResponse, RegistrationResponse } from "../interfaces/auth.interface";
+import type { LoginResponse } from "../interfaces/auth.interface";
 import { PREFIX } from "../helpers/API";
 import axios, { AxiosError } from "axios";
 import type { Profile } from "../interfaces/user.interface";
