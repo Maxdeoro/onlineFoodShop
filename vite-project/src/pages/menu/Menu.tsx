@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import Header from "../../components/header/Header";
 import Search from '../../components/search/Search';
 import { PREFIX } from "../../helpers/API";
@@ -12,18 +12,21 @@ function Menu() {
     const [products, setProducts] = useState<Product[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | undefined>();
+    const [filter, setFilter] = useState<string>();
 
-    const getMenu = async () => {
+    useEffect(() => {
+        getMenu(filter);
+    }, [filter]);
+
+    const getMenu = async (name?: string) => {
         try {
             setIsLoading(true);         // product loading starts
 
-            // imitation of bad internet connection
-            await new Promise<void>((resolve) => {
-                setTimeout(() => {
-                    resolve();
-                }, 2000);
+            const {data} = await axios.get<Product[]>(`${PREFIX}/products`, {
+                params: {
+                    name,
+                },
             });
-            const {data} = await axios.get<Product[]>(`${PREFIX}/products`);
             setProducts(data);
             setIsLoading(false);        // product loading finished
         } catch(e) {
@@ -36,19 +39,20 @@ function Menu() {
         }
     };
 
-    useEffect(() => {
-        getMenu();
-    }, []);
+    const updateFilter = (e: ChangeEvent<HTMLInputElement>) => {
+        setFilter(e.target.value);
+    };
 
     return <>
         <div className={styles['head']}>
             <Header>Menu</Header>
-            <Search placeholder="Search"/>
+            <Search placeholder="Search" onChange={updateFilter}/>
         </div>
         <div>
             {error && <>Something went wrong:(...{error}</>}
-            {!isLoading && <MenuList products={products}/>}
+            {!isLoading && products.length > 0 && <MenuList products={products}/>}
             {isLoading && <>Please wait...</>}
+            {!isLoading && products.length === 0 && <>Products not found.</>}
         </div>
     </>;
 };
