@@ -12,14 +12,13 @@ function ProductCard(props: ProductCardProps) {
 
     const addToCart = (e: MouseEvent) => {
         e.preventDefault();
-        dispatch(cartActions.add(props.Id));
+        dispatch(cartActions.add(props.id));
     };
 
-    return <Link to={`/product/${props.Id}`} className={styles['link']}>
+    return <Link to={`/product/${props.id}`} className={styles['link']}>
         <div className={styles['card']} >
                 <div className={styles['head']} 
                      style={{ backgroundImage: 'url(/pizza-example.jpg))' }}>
-                {/* <div className={styles['head']} style={{ backgroundImage: `url('${props.image}')` }}> */}
                     <img src='/pizza-example.jpg' className={styles['hard-image']}/>
                     <div className={styles['price']}>
                         {props.price}&nbsp;
