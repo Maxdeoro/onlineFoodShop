@@ -8,14 +8,16 @@ function CartItem (props: CartItemProps) {
     const dispatch = useDispatch<AppDispatch>();
 
     const descrease = () => {
-        
+        dispatch(cartActions.remove(props.id));
     };
 
     const increase = () => {
         dispatch(cartActions.add(props.id));
     };
 
-    const remove = () => {};
+    const removeAll = () => {
+        dispatch(cartActions.delete(props.id));
+    };
 
     return <div className={styles['item']}>
         <div className={styles['image']} style={{backgroundImage: `url('${props.image}')`}}></div>
@@ -31,7 +33,7 @@ function CartItem (props: CartItemProps) {
             <button className={styles['plus']} onClick={increase}>
                 <img src='/plus-icon.svg' alt='Increase items'/>
             </button>
-            <button className={styles['remove']} onClick={remove}>
+            <button className={styles['remove']} onClick={removeAll}>
                 <img src='/delete-icon.svg' alt='Remove from cart' />
             </button>
         </div>

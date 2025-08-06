@@ -50,11 +50,11 @@ export function Cart() {
     return <>
             <Header className={styles['header']}>Cart</Header>
             {items.map(item => {
-                const product = cartProducts.find(prod => prod.Id === item.id);
+                const product = cartProducts.find(prod => prod.id === item.id);
                 if(!product) {
                     return;
                 }
-                return <CartItem count={item.count} {...product} id={item.id}/>;
+                return <CartItem key={product.id} count={item.count} {...product} id={item.id}/>;
             })}
            </>;
 };
