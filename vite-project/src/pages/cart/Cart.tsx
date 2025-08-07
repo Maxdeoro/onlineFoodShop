@@ -8,6 +8,8 @@ import axios from "axios";
 import { PREFIX } from "../../helpers/API";
 import styles from './Cart.module.css';
 
+const DELIVERY_FEE = 145;
+
 export function Cart() {
     const [cartProducts, setCartProducts] = useState<Product[]>([]);
 
@@ -24,24 +26,18 @@ export function Cart() {
         setCartProducts(result);
     };
 
+    const total = items.map(item => {
+                        const product = cartProducts.find(prod => prod.id === item.id);
+                        if(!product) {
+                            return 0;
+                        }
+                        return item.count * product.price;
+                    }).reduce((acc, i) => acc += i, 0);
+
     useEffect(() => {
         console.log("Items in cart:", items);
         loadAllItems();
     }, [items]);
-
-    // const loadAllItems = async () => {
-    //  const result = await Promise.all(
-    //     items.map(i => {
-    //         if (i.id) {
-    //             return getItem(i.id);
-    //         } else {
-    //             console.error("Item ID is undefined", i);
-    //             return null; // or handle it as needed
-    //         }
-    //     })
-    //  );
-    //  setCartProducts(result.filter(product => product !== null)); // Filter out null values
-    // };
 
     useEffect(() => {
         loadAllItems();
@@ -56,5 +52,19 @@ export function Cart() {
                 }
                 return <CartItem key={product.id} count={item.count} {...product} id={item.id}/>;
             })}
+            <div className={styles['line']}>
+                <div className={styles['text']}>Total amount</div>
+                <div className={styles['price']}>{total}&nbsp;<span>$U</span></div>
+            </div>
+            <hr className={styles['hr']}/>
+            <div className={styles['line']}>
+                <div className={styles['text']}>Delivery</div>
+                <div className={styles['price']}>{DELIVERY_FEE}&nbsp;<span>$U</span></div>
+            </div>
+            <hr className={styles['hr']}/>
+            <div className={styles['line']}>
+                <div className={styles['text']}>Total {items.length}</div>
+                <div className={styles['price']}>{total + DELIVERY_FEE}&nbsp;<span>$U</span></div>
+            </div>
            </>;
 };
