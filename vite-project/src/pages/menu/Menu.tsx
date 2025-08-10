@@ -49,7 +49,7 @@ function Menu() {
             <Search placeholder="Search" onChange={updateFilter}/>
         </div>
         <div>
-            {error && <>Something went wrong:(...{error}</>}
+            {error && <>Something went wrong:...{error}</>}
             {!isLoading && products.length > 0 && <MenuList products={products}/>}
             {isLoading && <>Please wait...</>}
             {!isLoading && products.length === 0 && <>Products not found.</>}
